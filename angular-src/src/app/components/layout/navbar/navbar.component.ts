@@ -20,9 +20,9 @@ export class NavbarComponent implements OnInit {
     this.token = localStorage.getItem('x-auth-token');
 
   }
-  loggedIn() {
-    this.authService.storeUserData().subscribe(res => true, err => false)
-  }
+
+
+
 
   onLogout() {
     this.authService.logout();

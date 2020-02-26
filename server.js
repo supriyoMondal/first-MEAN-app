@@ -20,9 +20,14 @@ app.use(express.static(path.join(__dirname, 'client')));
 app.get("/", (req, res) => {
     res.send('hello from app');
 })
-//user route
-app.use("/users", require('./routes/users'))
 
+//user route
+app.use("/users", require('./routes/users'));
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`server started on port ${PORT}`)
-)
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, "client/index.html"))
+})
+
+app.listen(PORT)
+
