@@ -639,7 +639,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this = this;
 
           this.authService.storeUserData().subscribe(function (user) {
-            console.log(user);
             _this.authService.isRegistered = true;
           }, function (err) {
             _this.router.navigate(['/login']);
@@ -784,15 +783,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "ngOnInit",
         value: function ngOnInit() {
           this.token = localStorage.getItem('x-auth-token');
-        }
-      }, {
-        key: "loggedIn",
-        value: function loggedIn() {
-          this.authService.storeUserData().subscribe(function (res) {
-            return true;
-          }, function (err) {
-            return false;
-          });
         }
       }, {
         key: "onLogout",
@@ -1731,12 +1721,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AuthService, [{
         key: "registerUser",
         value: function registerUser(user) {
-          return this.http.post("http://localhost:5000/users/register", user, httpOptions);
+          return this.http.post("users/register", user, httpOptions);
         }
       }, {
         key: "loginUser",
         value: function loginUser(user) {
-          return this.http.post("http://localhost:5000/users/login", user, httpOptions);
+          return this.http.post("users/login", user, httpOptions);
         }
       }, {
         key: "storeUserData",
@@ -1748,7 +1738,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               "Content-type": 'application/json'
             })
           };
-          return this.http.get('http://localhost:5000/users/auth', options);
+          return this.http.get('users/auth', options);
         }
       }, {
         key: "logout",

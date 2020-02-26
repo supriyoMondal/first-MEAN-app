@@ -314,7 +314,6 @@ class DashboardComponent {
     }
     ngOnInit() {
         this.authService.storeUserData().subscribe(user => {
-            console.log(user);
             this.authService.isRegistered = true;
         }, err => {
             this.router.navigate(['/login']);
@@ -376,9 +375,6 @@ class NavbarComponent {
     }
     ngOnInit() {
         this.token = localStorage.getItem('x-auth-token');
-    }
-    loggedIn() {
-        this.authService.storeUserData().subscribe(res => true, err => false);
     }
     onLogout() {
         this.authService.logout();
@@ -807,10 +803,10 @@ class AuthService {
         this.http = http;
     }
     registerUser(user) {
-        return this.http.post("http://localhost:5000/users/register", user, httpOptions);
+        return this.http.post("users/register", user, httpOptions);
     }
     loginUser(user) {
-        return this.http.post("http://localhost:5000/users/login", user, httpOptions);
+        return this.http.post("users/login", user, httpOptions);
     }
     storeUserData() {
         this.authToken = localStorage.getItem('x-auth-token');
@@ -820,7 +816,7 @@ class AuthService {
                 "Content-type": 'application/json'
             })
         };
-        return this.http.get('http://localhost:5000/users/auth', options);
+        return this.http.get('users/auth', options);
     }
     logout() {
         localStorage.clear();

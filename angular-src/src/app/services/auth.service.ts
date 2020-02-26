@@ -15,10 +15,10 @@ export class AuthService {
   isRegistered: boolean;
   constructor(private http: HttpClient) { }
   registerUser(user): Observable<any> {
-    return this.http.post<any>("http://localhost:5000/users/register", user, httpOptions);
+    return this.http.post<any>("users/register", user, httpOptions);
   }
   loginUser(user): Observable<any> {
-    return this.http.post<any>("http://localhost:5000/users/login", user, httpOptions);
+    return this.http.post<any>("users/login", user, httpOptions);
   }
   storeUserData(): Observable<any> {
     this.authToken = localStorage.getItem('x-auth-token');
@@ -28,7 +28,7 @@ export class AuthService {
         "Content-type": 'application/json'
       })
     }
-    return this.http.get<any>('http://localhost:5000/users/auth', options);
+    return this.http.get<any>('users/auth', options);
   }
   logout() {
     localStorage.clear();

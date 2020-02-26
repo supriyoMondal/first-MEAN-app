@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.storeUserData().subscribe(user => {
-      console.log(user);
+
       this.authService.isRegistered = true;
     },
       err => {
